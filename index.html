@@ -8,8 +8,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script src='./script.js'></script>
 </head>
-<body ng-controller='MainCtrl'>
-  <h1>Hello {{world}}</h1>
-  <input ng-model='world' />
+<body>
+
+  <div ng-controller='MainCtrl'>
+    <h1>Hello {{world}}</h1>
+    <p>hi, {{world}}</p>
+  </div>
+
+  <div ng-controller='AltCtrl'>
+    <p>hi, {{world}}</p>
+  </div>
+
 </body>
 </html>
