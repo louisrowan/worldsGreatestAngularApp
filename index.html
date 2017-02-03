@@ -12,11 +12,16 @@
 
   <div ng-controller='MainCtrl'>
     <h1>Hello {{world}}</h1>
-    <p>hi, {{world}}</p>
+    <p>{{doStuff}}</p>
   </div>
 
   <div ng-controller='AltCtrl'>
-    <p>hi, {{world}}</p>
+    <input ng-model='a'>
+    <input ng-model='b'>
+    <input ng-model='c'>
+    <p>{{a}}</p>
+    <p>{{b}}</p>
+    <p>{{c}}</p>
   </div>
 
 </body>
