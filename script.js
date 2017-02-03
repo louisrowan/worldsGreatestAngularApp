@@ -15,6 +15,14 @@ TodosApp.controller('TodosCtrl', ['$scope', 'database', function($scope, databas
       return !t.completed
     })
   }
+
+  $scope.checkboxClick = function(index){
+    $scope.todosArray[index].completed = !$scope.todosArray[index].completed
+  }
+
+  $scope.deleteTodo = function(index){
+    $scope.todosArray.splice(index, 1)
+  }
 }])
 
 

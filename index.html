@@ -11,14 +11,17 @@
 <body>
   <h1>Todos</h1>
 
-  <div ng-controller='TodosCtrl'>
-      <div ng-repeat='todo in todosArray'>
-      <input type='checkbox' ng-checked=todo.completed>
-      {{todo.task}}
-      </div>
-    <input ng-model='newTodo'>
-    <button ng-click='addTodo()'>Add new item</button>
-    <button ng-click='clearCompleted()'>Clear completed</button>
+  <div ng-controller=TodosCtrl>
+    <ul>
+      <li ng-repeat='todo in todosArray'>
+        <input type='checkbox' ng-checked=todo.completed ng-click=checkboxClick($index)>
+        {{todo.task}}
+        <button ng-click=deleteTodo($index)>Remove</button>
+      </li>
+    </ul>
+    <input ng-model=newTodo>
+    <button ng-click=addTodo()>Add new item</button>
+    <button ng-click=clearCompleted()>Clear completed</button>
   </div>
 
 
