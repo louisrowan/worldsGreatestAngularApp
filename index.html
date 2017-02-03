@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='MyApp'>
+<html ng-app='TodosApp'>
 <head>
   <meta charset="utf-8">
   <title>Angular App</title>
@@ -9,20 +9,18 @@
   <script src='./script.js'></script>
 </head>
 <body>
+  <h1>Todos</h1>
 
-  <div ng-controller='MainCtrl'>
-    <h1>Hello {{world}}</h1>
-    <p>{{doStuff}}</p>
+  <div ng-controller='TodosCtrl'>
+      <div ng-repeat='todo in todosArray'>
+      <input type='checkbox' ng-checked=todo.completed>
+      {{todo.task}}
+      </div>
+    <input ng-model='newTodo'>
+    <button ng-click='addTodo()'>Add new item</button>
+    <button ng-click='clearCompleted()'>Clear completed</button>
   </div>
 
-  <div ng-controller='AltCtrl'>
-    <input ng-model='a'>
-    <input ng-model='b'>
-    <input ng-model='c'>
-    <p>{{a}}</p>
-    <p>{{b}}</p>
-    <p>{{c}}</p>
-  </div>
 
 </body>
 </html>

@@ -1,31 +1,36 @@
-var MyApp = angular.module('MyApp', []);
+var TodosApp = angular.module('TodosApp', []);
 
-MyApp.controller('MainCtrl', ['$scope', 'data', function($scope, data){
-  $scope.doStuff = data.getStuff
-  $scope.func = data.func()
-  console.log($scope.doStuff)
-  console.log($scope.func)
-  $scope.world = 'Front End Masters'
+TodosApp.controller('TodosCtrl', ['$scope', 'database', function($scope, database){
+  $scope.todosArray = database.todosArray()
+  $scope.newTodo = ''
+
+  $scope.addTodo = function(){
+    let newTodo = {task: $scope.newTodo, completed: false}
+    $scope.todosArray.push(newTodo)
+    $scope.newTodo = ''
+  }
+
+  $scope.clearCompleted = function(){
+    $scope.todosArray = $scope.todosArray.filter(function(t){
+      return !t.completed
+    })
+  }
 }])
 
-MyApp.controller('AltCtrl', function($scope){
-  $scope.a = 'bananas'
-  $scope.b = 'apples'
-  $scope.c = $scope.a
-})
 
-MyApp.factory('data', function(){
-  var things = [
-    {name: "bob", age: 14},
-    {name: "mary", age: 20}
+
+TodosApp.factory('database', function(){
+  var todos = [
+    {task: 'mow lawn', completed: false},
+    {task: 'phone call', completed: true},
+    {task: 'pay bills', completed: false}
   ]
 
-  var func = function(){
-    return things
+  var todosArray = function(){
+    return todos
   }
 
   return {
-    getStuff: things,
-    func: func
+    todosArray: todosArray
   }
 })
