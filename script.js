@@ -1,12 +1,12 @@
 var MyApp = angular.module('MyApp', []);
 
-MyApp.controller('MainCtrl', function($scope, data){
+MyApp.controller('MainCtrl', ['$scope', 'data', function($scope, data){
   $scope.doStuff = data.getStuff
   $scope.func = data.func()
   console.log($scope.doStuff)
   console.log($scope.func)
   $scope.world = 'Front End Masters'
-})
+}])
 
 MyApp.controller('AltCtrl', function($scope){
   $scope.a = 'bananas'
