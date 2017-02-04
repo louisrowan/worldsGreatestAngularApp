@@ -3,43 +3,59 @@ var CalcApp = angular.module('CalcApp', [])
 CalcApp.controller('CalcCtrl', function($scope, buttonsFact){
   $scope.buttons = buttonsFact.buttons
 
+  $scope.error = false
   $scope.value = ''
   var firstNum = ''
   var operation = ''
-  var current = ''
 
   $scope.buttonClick = function(index){
     var buttonVal = $scope.buttons[index].val
-    console.log('scope=', $scope.value)
-    console.log('firstNum=', firstNum)
-    console.log('operation=', operation)
+
+    if ($scope.error) {
+      if (buttonVal === 'C') {
+      $scope.value = ''
+      $scope.error = false
+      firstNum = ''
+      operation = ''
+      }
+      return;
+    }
 
     if (buttonVal === 'C') {
       $scope.value = ''
       firstNum = ''
       operation = ''
-      current = ''
-      return;
     }
     else if (buttonVal === '=') {
-      console.log(firstNum, operation, $scope.value)
+      if (operation === '+'){
+        $scope.value = +firstNum + +$scope.value
+      } else if (operation === '-'){
+        $scope.value = +firstNum - +$scope.value
+      } else if (operation === '*'){
+        $scope.value = +firstNum * +$scope.value
+      } else {
+        $scope.value = +firstNum / +$scope.value
+      }
+      firstNum = $scope.value
+      operation = ''
     }
     else if (typeof(buttonVal) === 'number') {
       if (operation === '') {
-        firstNum += buttonVal
+        firstNum += buttonVal.toString()
+        $scope.value += buttonVal.toString()
       }
-      else if (firstNum === $scope.value){
-        $scope.value = buttonVal
-        return
+      else if (firstNum == $scope.value){
+        $scope.value = buttonVal.toString()
+      } else {
+        $scope.value += buttonVal.toString()
       }
-        $scope.value += buttonVal
-        return;
     }
     else {
-      if ($scope.value === operation){
-        $scope.value = 'error'
+      if (operation != '' || firstNum === ''){
+        $scope.value = 'syntax error!'
+        $scope.error = true
       } else {
-        firstNum = $scope.value
+        operation = buttonVal
       }
     }
   }
