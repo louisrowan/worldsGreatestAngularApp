@@ -1,0 +1,28 @@
+div {
+  margin: 5px;
+  width: 1000px;
+  text-align: center;
+  border: 1px solid gray;
+}
+
+table {
+  margin: auto;
+}
+
+table tr {
+  border-bottom: 2px solid black;
+}
+
+table td {
+  padding: 10px;
+}
+
+input, button {
+  padding: 5px;
+  margin: 5px;
+}
+
+.completed-style {
+  color: gray;
+  text-decoration: line-through; 
+}

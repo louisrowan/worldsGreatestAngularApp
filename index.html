@@ -5,23 +5,31 @@
   <title>Angular App</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel='stylesheet' href='./styles.css'>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script src='./script.js'></script>
 </head>
 <body>
-  <h1>Todos</h1>
 
   <div ng-controller=TodosCtrl>
-    <ul>
-      <li ng-repeat='todo in todosArray'>
-        <input type='checkbox' ng-checked=todo.completed ng-click=checkboxClick($index)>
-        {{todo.task}}
-        <button ng-click=deleteTodo($index)>Remove</button>
-      </li>
-    </ul>
-    <input ng-model=newTodo>
-    <button ng-click=addTodo()>Add new item</button>
-    <button ng-click=clearCompleted()>Clear completed</button>
+    <h1>Todos</h1>
+    <table>
+      <tr ng-repeat='todo in todosArray'>
+        <td>
+          <input type='checkbox' ng-checked=todo.completed ng-click=checkboxClick($index)>
+        </td>
+        <td ng-class="todo.completed ? 'completed-style' : ''">
+          {{todo.task}}
+          {{todo.completed}}
+        </td>
+        <td>
+          <button ng-click=deleteTodo($index)>Remove</button>
+        </td>
+      </tr>
+    </table>
+    <input ng-model=newTodo><br>
+    <button ng-click=addTodo()>Add new item</button><br>
+    <button ng-click=clearCompleted()>Clear completed</button><br>
   </div>
 
 

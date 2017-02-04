@@ -6,6 +6,7 @@ TodosApp.controller('TodosCtrl', ['$scope', 'database', function($scope, databas
 
   $scope.addTodo = function(){
     let newTodo = {task: $scope.newTodo, completed: false}
+    if (newTodo.task === '') return;
     $scope.todosArray.push(newTodo)
     $scope.newTodo = ''
   }
