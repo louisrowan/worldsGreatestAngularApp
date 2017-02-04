@@ -11,7 +11,7 @@
 <body ng-controller='CalcCtrl'>
   <div id='calculatorDiv'>
     <div class='inputDiv'>
-      <input ng-value=value>
+      <input ng-model=value>
     </div>
     <div ng-repeat='button in buttons' class='buttonClass'>
     <button ng-click=buttonClick($index)>{{button.val}}</button>
