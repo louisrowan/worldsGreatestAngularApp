@@ -1,5 +1,29 @@
 var CalcApp = angular.module('CalcApp', [])
 
+CalcApp.directive('test', function(){
+  var linker = function(scope, element, attrs){
+      (function doAgain(){
+        let color = colors[randNum()]
+        element.css({ background: color})
+        
+        setTimeout(function(){
+          doAgain()
+        }, 1000)
+      }())
+  }
+
+  var colors = ['#ffffff', '#e5eefc', '#e5fcf8', '#f5ffe5']
+  var randNum = ()=> {
+    return Math.floor(Math.random()*3)
+  }
+
+  
+
+  return {
+    link: linker
+  }
+})
+
 CalcApp.controller('CalcCtrl', function($scope, buttonsFact){
   $scope.buttons = buttonsFact.buttons
 
@@ -8,8 +32,7 @@ CalcApp.controller('CalcCtrl', function($scope, buttonsFact){
   var firstNum = ''
   var operation = ''
 
-  $scope.buttonClick = function(index){
-    var buttonVal = $scope.buttons[index].val
+  $scope.buttonClick = function(buttonVal){
 
     if ($scope.error) {
       if (buttonVal === 'C') {
@@ -52,7 +75,7 @@ CalcApp.controller('CalcCtrl', function($scope, buttonsFact){
     }
     else {
       if (operation != '' || firstNum === ''){
-        $scope.value = 'syntax error!'
+        $scope.value = '------ syntax error! ------'
         $scope.error = true
       } else {
         operation = buttonVal
