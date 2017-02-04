@@ -1,20 +1,20 @@
 var CalcApp = angular.module('CalcApp', [])
 
-CalcApp.directive('test', function(){
+CalcApp.directive('changecolor', function(){
   var linker = function(scope, element, attrs){
-      element.css({ transition: 'background 5000ms linear'})
+      element.css({ transition: 'background 1000ms linear'})
       (function doAgain(){
         let color = colors[randNum()]
         element.css({ background: color})
         
         setTimeout(function(){
           doAgain()
-        }, 5000)
+        }, 1000)
       }())
   }
 
-  var colors = ['#fff5f2', '#e5eefc', '#e5fcf8', '#f5ffe5']
-  var randNum = ()=> {
+  var colors = ['#a9f9eb', '#e2fca9', '#f5c3f7', '#ffe5e6']
+  var randNum = () => {
     return Math.floor(Math.random()*3)
   }
 
