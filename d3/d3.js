@@ -1,0 +1,5 @@
+var svg = d3.select('#svgDiv')
+  .append('svg')
+  .attr('height', '100%')
+  .attr('width', '100%')
+  .style('border', '2px solid green')
