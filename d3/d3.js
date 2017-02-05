@@ -5,9 +5,9 @@ app.controller('d3Controller', function($scope){
 })
 
 var circleData = [
-  {name: 'A', speed: 5},
-  {name: 'B', speed: 10},
-  {name: 'C', speed: 15}
+  {name: 'A', speed: 5000},
+  {name: 'B', speed: 3000},
+  {name: 'C', speed: 1000}
 ]
 
 
@@ -27,3 +27,11 @@ var circles = g.append('circle')
   .style('fill', 'red')
   .attr('cx', 100)
   .attr('cy', (d, i) => 100*i + 100)
+  .style('transition', (d) => {
+    return `cx ${d.speed}ms ease-out`
+  })
+
+d3.select('#startRace').on('click', function(){
+  circles
+    .style('cx', 600)
+})
