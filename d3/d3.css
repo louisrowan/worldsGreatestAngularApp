@@ -1,5 +1,6 @@
 #svgDiv {
-  height: 100vh;
+  height: 99.7vh;
   width: 100vw;
   background: lightblue;
+  position: relative;
 }
