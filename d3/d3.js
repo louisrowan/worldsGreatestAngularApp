@@ -2,9 +2,7 @@ var app = angular.module('d3App', [])
 
 app.controller('d3Controller', function($scope){
 
-  $scope.first = 1000
-  $scope.second = 1500
-  $scope.third = 2000
+
 
   $scope.animals = [
     {name: 'lion', speed: 2000, active: false},
@@ -26,7 +24,7 @@ $scope.boxChecked = function(index){
   } else {
     animal.active = true
   }
-  console.log(animal.active)
+  update()
 }
 
 var svg = d3.select('#svgDiv')
@@ -35,36 +33,43 @@ var svg = d3.select('#svgDiv')
   .attr('width', '100%')
   .attr('position', 'absolute')
 
-var g = svg.selectAll('g')
-  .data($scope.circleData)
-  .enter()
-  .append('g')
+var update = function(){
 
-var circles = g.append('circle')
-  .attr('r', 20)
-  .style('fill', 'red')
-  .attr('cx', 100)
-  .attr('cy', (d, i) => 100*i + 100)
+  var g = svg.selectAll('g')
+    .data($scope.circleData)
+    .enter()
+    .append('g')
 
 
-d3.select('#startRace').on('click', function(){
-  circles
-    .style('transition', (d) => {
-      return `cx ${+d.speed}ms ease-out`
-    })
-    .style('cx', 600)
+
+  var circles = g.append('circle')
+    .attr('r', 20)
+    .style('fill', 'red')
+    .attr('cx', 100)
+    .attr('cy', (d, i) => 100*i + 100)
+
+
+  d3.select('#startRace').on('click', function(){
+    circles
+      .style('transition', (d) => {
+        return `cx ${+d.speed}ms ease-out`
+      })
+      .style('cx', 600)
+  })
+
+  d3.select('#resetRace').on('click', function(){
+    console.log('click')
+    circles
+      .style('transition', '')
+      .style('cx', 100)
+      .style('transition', (d) => {
+        return `cx ${d.speed}ms ease-out`
+      })
+  })
+
+}
+
+
 })
 
-d3.select('#resetRace').on('click', function(){
-  console.log('click')
-  circles
-    .style('transition', '')
-    .style('cx', 100)
-    .style('transition', (d) => {
-      return `cx ${d.speed}ms ease-out`
-    })
-})
-
-
-})
 
