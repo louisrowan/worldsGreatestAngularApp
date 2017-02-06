@@ -6,11 +6,28 @@ app.controller('d3Controller', function($scope){
   $scope.second = 1500
   $scope.third = 2000
 
-$scope.circleData = [
-  {name: 'A', speed: $scope.first},
-  {name: 'B', speed: $scope.second},
-  {name: 'C', speed: $scope.third}
-]
+  $scope.animals = [
+    {name: 'lion', speed: 2000, active: false},
+    {name: 'cheetah', speed: 1000, active: false},
+    {name: 'panda', speed: 3000, active: false},
+    {name: 'tiger', speed: 4000, active: false}
+  ]
+
+$scope.circleData = function(){
+  return $scope.animals.filter((a) => {
+    return a.active
+  })
+}
+
+$scope.boxChecked = function(index){
+  let animal = $scope.animals[index]
+  if (animal.active) {
+    animal.active = false
+  } else {
+    animal.active = true
+  }
+  console.log(animal.active)
+}
 
 var svg = d3.select('#svgDiv')
   .append('svg')

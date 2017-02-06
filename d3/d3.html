@@ -11,6 +11,12 @@
 <body ng-app='d3App' ng-controller='d3Controller'>
 
 <div id='svgDiv'>
+  <form>
+  <span ng-repeat='a in animals'>
+    <label>{{a.name}}</label>
+    <input type='checkbox' ng-click=boxChecked($index)><br>
+  </span>
+  </form>
   <button id='startRace'>Start Race</button>
   <button id='resetRace'>Reset</button>
   <input ng-model='first'>
