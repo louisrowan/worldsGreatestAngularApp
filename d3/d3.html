@@ -14,7 +14,7 @@
   <form>
   <span ng-repeat='a in animals'>
     <label>{{a.name}}</label>
-    <input type='checkbox' ng-click=boxChecked($index)><br>
+    <input type='checkbox' ng-click=boxChecked($index) ng-disabled='boxesCount >= 2'><br>
   </span>
   </form>
   <button id='startRace'>Start Race</button>

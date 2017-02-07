@@ -3,13 +3,15 @@ var app = angular.module('d3App', [])
 app.controller('d3Controller', function($scope){
 
   $scope.animals = [
-    {name: 'lion', color: 'red', speed: 2000, active: false},
-    {name: 'cheetah', color: 'yellow', speed: 1000, active: false},
-    {name: 'panda', color: 'green', speed: 3000, active: false},
-    {name: 'tiger', color: 'blue', speed: 4000, active: false}
+    {name: 'lion', color: 'red', speed: 3000, active: false},
+    {name: 'cheetah', color: 'yellow', speed: 3100, active: false},
+    {name: 'panda', color: 'green', speed: 3200, active: false},
+    {name: 'tiger', color: 'blue', speed: 2900, active: false}
   ]
 
   $scope.circleData = []
+
+  $scope.boxesCount = 0
 
   $scope.boxChecked = function(index){
     let animal = $scope.animals[index]
@@ -18,10 +20,12 @@ app.controller('d3Controller', function($scope){
       animal.active = false
       let i = $scope.circleData.indexOf(animal)
       $scope.circleData.splice(i, 1)
+      $scope.boxesCount -= 1
       remove()
     } else {
       animal.active = true
       $scope.circleData.push(animal)
+      $scope.boxesCount += 1
       update()
     }
   }
