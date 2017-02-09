@@ -77,8 +77,12 @@ app.controller('d3Controller', function($scope){
     })
 
     d3.select('#resetRace').on('click', function(){
-      $scope.circleData = []
-      remove()
+      d3.selectAll('circle')
+        .style('transition', '')
+        .style('cx', 100)
+        .style('transition', (d) => {
+          return `cx ${d.speed}ms ease-out`
+        })
     })
 
 
