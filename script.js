@@ -1,6 +1,34 @@
-var TodosApp = angular.module('TodosApp', []);
+var TodosApp = angular.module('TodosApp', ['ngRoute']);
 
-TodosApp.controller('TodosCtrl', ['$scope', 'database', function($scope, database){
+
+
+TodosApp.config(function($routeProvider){
+
+  $routeProvider
+    .when('/', {
+      templateUrl: 'pages/main.html',
+      controller: 'TodosCtrl'
+    })
+    .when('/second', {
+      templateUrl: 'pages/second.html',
+      controller: 'TodosCtrl'
+    })
+
+})
+
+TodosApp.controller('TodosCtrl', ['$scope', 'database', '$log', function($scope, database, $log){
+
+  
+
+
+
+
+
+
+
+
+
+
   $scope.todosArray = database.todosArray()
   $scope.newTodo = ''
 
